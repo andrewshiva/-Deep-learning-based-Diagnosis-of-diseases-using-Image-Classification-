@@ -1,0 +1,15 @@
+flask
+flask_cors
+uuid
+werkzeug
+tensorflow
+numpy
+matplotlib
+keras
+gunicorn
+dash
+plotly
+bs4
+pandas
+requests
+flask_cors

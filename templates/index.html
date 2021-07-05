@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Home Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icomoon/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.min.css') }}">
+  <script src="https://kit.fontawesome.com/3410596463.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datepicker.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/flaticon/font/flaticon.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/flaticon-covid/font/flaticon.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .label_num_inc {
+      color: rgb(250, 7, 7);
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: .1rem;
+      font-weight: 700; }
+    .label_num_dec {
+      color: rgb(82, 245, 7);
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: .1rem;
+      font-weight: 700; }
+  </style>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+
+  <div id="overlayer"></div>
+  <div class="loader">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    
+    <header class="site-navbar light js-sticky-header site-navbar-target" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+
+          <div class="col-6 col-xl-2">
+          <a class="navbar-brand" href="{{ url_for('home') }}"><i class="fa fa-virus mx-3"></i>Medical Diagnosis using AI</a>
+            <!-- <div class="mb-0 site-logo"><a href="{{ url_for('home') }}" class="mb-0">Medical Diagnosis using AI<span class="text-primary">.</span> </a></div> -->
+          </div>
+
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li class="active"><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+                <li class="has-children">
+                  <a href="" class="nav-link">Detect Disease</a>
+                  <ul class="dropdown">
+                    <li><a href="{{ url_for('detectP') }}" class="nav-link">Pneumonia</a></li>
+                    <li><a href="{{ url_for('detectC') }}" class="nav-link">Covid-19</a></li>
+                    <li><a href="{{ url_for('detectB') }}" class="nav-link">Brain Tumor</a></li>
+                  </ul>
+                </li>
+                <li class="has-children">
+                  <a href="" class="nav-link">Information about Covid-19</a>
+                  <ul class="dropdown">
+                    <li><a href="{{ url_for('symptoms') }}" class="nav-link">Symptoms of Covid-19</a></li>
+                    <li><a href="{{ url_for('prevention') }}" class="nav-link">Prevention of Covid-19</a></li>
+                  </ul>
+                </li>
+               
+              </ul>
+            </nav>
+          </div>
+
+
+          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3 text-black"></span></a></div>
+
+        </div>
+      </div>
+
+    </header>
+
+    
+
+    <div class="hero-v1">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mr-auto text-center text-lg-left">
+            <h5>
+              <span class="d-block subheading">Covid-19 Awareness</span>
+            </h5>
+            <h1 class="heading mb-3">Stay Home. Stay Safe.</h1>
+            <p class="mb-5">Stay indoors, and if neccessary wear mask before stepping out. Wash your hands regularly and sanitize them frequently. </p>
+            <p class="mb-4"><a href="{{ url_for('prevention') }}" class="btn btn-primary">How to prevent</a>
+              <a href="#" class="btn btn-primary">Detect Covid-19</a>
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <figure class="illustration">
+              <img src="{{ url_for('static', filename='images/illustration.png') }}" alt="Image" class="img-fluid">
+            </figure>
+          </div>
+          <div class="col-lg-6"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- MAIN -->
+    
+    <div class="site-section stats">
+      <div class="container">
+        <div class="row mb-3">
+          <div class="col-lg-7 text-center mx-auto">
+            <h2 class="section-heading">Coronavirus Statistics</h2>
+            <p>Live numbers updated daily.</p>
+          </div>
+        </div>
+        <div class="row"> 
+          <div class="col-lg-3">
+            <div class="data">
+              <span class="icon text-primary">
+                <span class="flaticon-virus"></span>
+              </span>
+              <strong class="d-block number">{{ context['Active Cases'] }}</strong>
+              <strong class="{% if 'decrement'in context['data_increment']['Increment/Decrement in Active Cases']['type']%} label_num_dec {% else %} label_num_inc {% endif %}">{{ context['data_increment']['Increment/Decrement in Active Cases']['number']}}
+                {% if 'decrement'in context['data_increment']['Increment/Decrement in Active Cases']['type']%}
+                <i class="glyphicon glyphicon-arrow-down"></i>
+                {% else %}
+                <i class="glyphicon glyphicon-arrow-up"></i>
+                {% endif %}
+              </strong><br>
+              <span class="label">Total Cases in India</span>
+            </div>
+          </div> 
+          <div class="col-lg-3">
+            <div class="data">
+              <span class="icon text-primary">
+                <span class="flaticon-virus"></span>
+              </span>
+              <strong class="d-block number">{{ context['Total Cases'] }}</strong>
+              <strong class="{% if 'decrement'in context['data_increment']['Increment/Decrement in Total Cases']['type']%} label_num_dec {% else %} label_num_inc {% endif %}">{{ context['data_increment']['Increment/Decrement in Total Cases']['number']}}
+                {% if 'decrement'in context['data_increment']['Increment/Decrement in Total Cases']['type']%}
+                <i class="glyphicon glyphicon-arrow-down"></i>
+                {% else %}
+                <i class="glyphicon glyphicon-arrow-up"></i>
+                {% endif %}
+              </strong><br>
+              <span class="label">Active Cases</span>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="data">
+              <span class="icon text-primary">
+                <span class="flaticon-virus"></span>
+              </span>
+              <strong class="d-block number">{{ context['Deaths/Diseased'] }}</strong>
+              <strong class="{% if 'decrement'in context['data_increment']['Increment/Decrement in Deaths/Diseased']['type']%} label_num_dec {% else %} label_num_inc {% endif %}">{{ context['data_increment']['Increment/Decrement in Deaths/Diseased']['number']}}
+                {% if 'decrement'in context['data_increment']['Increment/Decrement in Deaths/Diseased']['type']%}
+                <i class="glyphicon glyphicon-arrow-down"></i>
+                {% else %}
+                <i class="glyphicon glyphicon-arrow-up"></i>
+                {% endif %}
+              </strong><br>
+              <span class="label">Deaths</span>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="data">
+              <span class="icon text-primary">
+                <span class="flaticon-virus"></span>
+              </span>
+              <strong class="d-block number">{{ context['Discharged/Recovered'] }}</strong>
+              <strong class="{% if 'decrement'in context['data_increment']['Increment/Decrement in Discharged/Recovered']['type']%} label_num_dec {% else %} label_num_inc {% endif %}">{{ context['data_increment']['Increment/Decrement in Discharged/Recovered']['number']}}
+                {% if 'decrement'in context['data_increment']['Increment/Decrement in Discharged/Recovered']['type']%}
+                <i class="glyphicon glyphicon-arrow-up"></i>
+                {% else %}
+                <i class="glyphicon glyphicon-arrow-down"></i>
+                {% endif %}
+              </strong><br>
+              <span class="label">Recovered Cases</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <iframe src ="{{ url_for('/EE/') }}" width=630 height=660></iframe>
+          </div>
+          <div class="col-lg-5 ml-auto">
+            <h2 class="mb-4 section-heading">What is Coronavirus?</h2>
+            <p>Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus. Most people who fall sick with COVID-19 will experience mild to moderate symptoms and recover without special treatment.</p>
+            <ul class="list-check list-unstyled mb-5">
+              <li>COVID-19 is the disease caused by SARS-CoV-2, the coronavirus that emerged in December 2019.</li>
+              <li>Consectetur adipisicing elit</li>
+              <li>The coronavirus can be spread from person to person. It is diagnosed with a laboratory test.</li>
+              <li>Prevention involves physical distancing, mask-wearing, hand hygiene and staying away from others if you feel sick.</li>
+              <li>Researchers concluded coronavirus is spread through droplets and virus particles released into the air when an infected person breathes, talks, laughs, sings, coughs or sneezes.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pb-5">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="feature-v1 d-flex align-items-center">
+            <div class="icon-wrap mr-3">
+              <span class="flaticon-protection"></span>
+            </div>
+            <div>
+              <h3>Protection</h3>
+              <span class="d-block">Wear masks, maintain social distancing</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="feature-v1 d-flex align-items-center">
+            <div class="icon-wrap mr-3">
+              <span class="flaticon-patient"></span>
+            </div>
+            <div>
+              <h3>Prevention</h3>
+              <span class="d-block">Prevention is better than cure.</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="feature-v1 d-flex align-items-center">
+            <div class="icon-wrap mr-3">
+              <span class="flaticon-hand-sanitizer"></span>
+            </div>
+            <div>
+              <h3>Treatments</h3>
+              <span class="d-block">Contact doctor if severe symptoms occur.</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="feature-v1 d-flex align-items-center">
+            <div class="icon-wrap mr-3">
+              <span class="flaticon-virus"></span>
+            </div>
+            <div>
+              <h3>Symptoms</h3>
+              <span class="d-block">Fever, Cough, Headache, Shortness of Breadth</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="site-section bg-primary-light">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+
+            <div class="row">
+              <div class="col-6 col-lg-6 mt-lg-5">
+                <div class="media-v1 bg-1">
+                  <div class="icon-wrap">
+                    <span class="flaticon-stay-at-home"></span>
+                  </div>
+                  <div class="body">
+                    <h3>Stay at home</h3>
+                    <p>Stay indoors, and if neccessary wear mask before stepping out.</p>
+                  </div>
+                </div>
+
+                <div class="media-v1 bg-1">
+                  <div class="icon-wrap">
+                    <span class="flaticon-patient"></span>
+                  </div>
+                  <div class="body">
+                    <h3>Wear facemask</h3>
+                    <p>Wear a N95 or a surgical mask before stepping out of your home.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-lg-6">
+                <div class="media-v1 bg-1">
+                  <div class="icon-wrap">
+                    <span class="flaticon-social-distancing"></span>
+                  </div>
+                  <div class="body">
+                    <h3>Keep social distancing</h3>
+                    <p>दो गज दूरी है ज़रूरी. </p>
+                  </div>
+                </div>
+
+                <div class="media-v1 bg-1">
+                  <div class="icon-wrap">
+                    <span class="flaticon-hand-washing"></span>
+                  </div>
+                  <div class="body">
+                    <h3>Wash your hands</h3>
+                    <p>Wash your hands regularly and sanitize them frequently. </p>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="col-lg-5 ml-auto">
+            <h2 class="section-heading mb-4">How to Prevent Coronavirus?</h2>
+            <p></p>
+            <p class="mb-4">Get vaccinated whenever and wherever you possible can, maintainn social distancing and Wear a mask.
+              Also, sanitize your hands regularly.</p>
+
+            <ul class="list-check list-unstyled mb-5">
+              <li>Maintain social distancing</li>
+              <li>Wear mask outdoors</li>
+              <li>Get yourself and the people around you vaccinated at the earliest.</li>
+              <li>Follow the norms laid by the Government.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-7 mx-auto text-center">
+            <span class="subheading">What you need to do</span>
+            <h2 class="mb-4 section-heading">How To Protect Yourself</h2>
+            <p>Stay home from work or school until you are free of fever, signs of a fever, and any other symptoms for at least 24 hours and without the use of fever-reducing or other symptom-altering medications. Seek medical attention if you have reason to believe you have been exposed to coronavirus or influenza. Call your healthcare provider before visiting a healthcare facility.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 ">
+            <div class="row mt-5 pt-5">
+              <div class="col-lg-6 do ">
+                <h3>You should do</h3>
+                <ul class="list-unstyled check">
+                  <li>Stay at home</li>
+                  <li>Wear mask</li>
+                  <li>Use Sanitizer</li>
+                  <li>Disinfect your home</li>
+                  <li>Wash your hands</li>
+                  <li>Frequent self-isolation</li>
+                </ul>
+              </div>
+              <div class="col-lg-6 dont ">
+                <h3>You should avoid</h3>
+                <ul class="list-unstyled cross">
+                  <li>Avoid infected people</li>
+                  <li>Avoid animals</li>
+                  <li>Avoid handshaking</li>
+                  <li>Aviod infected surfaces</li>
+                  <li>Don't touch your face</li>
+                  <li>Avoid droplets</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img src="{{ url_for('static', filename='images/protect.png') }}" alt="Image" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <div class="site-section bg-primary-light"> -->
+      <!-- <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-7 mx-auto text-center">
+            <h2 class="mb-4 section-heading">Symptoms of Coronavirus</h2> -->
+            <!-- <p>Most common symptoms include fever, dry cough, fatigue and some serious symptoms include difficulty in breathing or shortness of breath
+              chest pain, loss of speech or movement etc.
+              On an average it takes 5–6 days from when someone is infected with the virus for symptoms to show, however it can take up to 14 days.</p>
+          </div> -->
+          <!-- Seek immediate medical attention if you have serious symptoms. Always call before visiting your doctor or health facility.
+              People with mild symptoms who are otherwise healthy should manage their symptoms at home. -->
+        <!-- </div> -->
+        <!-- <div class="row">
+          <div class="col-lg-6 mb-4">
+            <div class="symptom d-flex">
+              <div class="img">
+                <img src="{{ url_for('static', filename='images/symptom_high-fever.png') }}" alt="Image" class="img-fluid">
+              </div>
+              <div class="text">
+                <h3>High Fever</h3>
+                <p></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mb-4">
+            <div class="symptom d-flex">
+              <div class="img">
+                <img src="{{ url_for('static', filename='images/symptom_cough.png') }}" alt="Image" class="img-fluid">
+              </div>
+              <div class="text">
+                <h3>Cough</h3>
+                <p></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mb-4">
+            <div class="symptom d-flex">
+              <div class="img">
+                <img src="{{ url_for('static', filename='images/symptom_sore-troath.png') }}" alt="Image" class="img-fluid">
+              </div>
+              <div class="text">
+                <h3>Sore Throat</h3>
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mb-4">
+            <div class="symptom d-flex">
+              <div class="img">
+                <img src="{{ url_for('static', filename='images/symptom_headache.png') }}" alt="Image" class="img-fluid">
+              </div>
+              <div class="text">
+                <h3>Headache</h3>
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- <div class="row justify-content-md-center">
+          <div class="col-lg-10">
+            <div class="note row">
+
+              <div class="col-lg-8 mb-4 mb-lg-0"><strong>Stay at home and call your doctor:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, eaque.</div>
+            </div>
+          </div>
+        </div> -->
+      <!-- </div>
+    </div> -->
+    <div class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <h2 class="footer-heading mb-4">About</h2>
+            <p>During the pandemic, AI has been actively contributing behind the scene to push the limits of human information on this huge endeavor. <br>With the help of AI and deep learning, it has been tried to ease the burden of our country's heroic medical staff where the patient can easily protect, detect and prevent themselves by seeking medical support at the earliest to recover from this deadly disease at the ease of few clicks.</p>
+          </div>
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-4">
+                <h2 class="footer-heading mb-4">Quick Links</h2>
+                <ul class="list-unstyled">
+                  <li><a href="{{ url_for('symptoms') }}">Symptoms</a></li>
+                  <li><a href="{{ url_for('prevention') }}">Prevention</a></li>
+                  
+                </ul>
+              </div>
+              <div class="col-lg-4">
+                <h2 class="footer-heading mb-4">Detect Disease</h2>
+                <ul class="list-unstyled">
+                  <li><a href="{{ url_for('detectP') }}">Pneumonia</a></li>
+                  <li><a href="{{ url_for('detectC') }}">Covid-19</a></li>
+                  <li><a href="{{ url_for('detectB') }}">Brain Tumor</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-12">
+            <div class="border-top pt-5">
+              <p class="copyright"><small>
+                The project is made with <i class="icon-heart text-danger" aria-hidden="true"></i> in India</a>
+                </small></p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- .site-wrap -->
+
+  <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery-ui.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.countdown.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.easing.1.3.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.fancybox.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/isotope.pkgd.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+</body>
+</html>

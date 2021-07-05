@@ -1,0 +1,230 @@
+{% extends "template.html" %}
+    
+{% block title %}Results{% endblock %}
+
+{% block content %}
+<h1>Image you've provided us with</h1>
+<img class="my-3" src="{{url_for('static', filename='uploads/{}'.format(image))}}" width="300" height="300">
+<h3>Result: <b style="color: {% if 'NORMAL'in result%} green {% else %} red {% endif %} ">{{ result }} with Probability : {{ prob }}</b></h3>
+<h3>Image Input Type : {{ image_inp }} </b></h3><br>
+<h3>Result: According to your Symptoms<br><b style="color: {% if 'NORMAL'in result2%} green {% else %} red {% endif %} ">{{ result2 }} with Probability of Covid-19 Being : {{ prob2 }}</b></h3>
+<center>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Symptom</th>
+                <th>Your Input</th>
+                <th>In case of Covid Patients</th>
+                <th>In case of Non-Covid Patients</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Gender</td>
+                <td>{{ content[0]['gender'] }}</td>
+                <td>
+                    <div class="w3-green w3-round-xlarge">
+                        <div class="w3-container w3-red w3-round-xlarge" style="width:53%">53% Male</div>
+                      </div>
+                </td>
+                <td>
+                    <div class="w3-green w3-round-xlarge">
+                        <div class="w3-container w3-red w3-round-xlarge" style="width:56%">56% Female</div>
+                      </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td>{{ content[0]['age'] }}</td>
+            </tr>
+            <tr>
+                <td>State of Residence</td>
+                <td>{{ content[0]['state'] }}</td>
+            </tr>
+            <tr  class="{{ 'active-row' if content[0]['lives_in_affected_area'] == 1 else 'aa' }}">
+                <td>Lives in Affected Area</td>
+                <td>{{ 'Yes' if content[0]['lives_in_affected_area'] == 1 else 'No' }}</td>
+                <td>
+                    <div class="w3-green w3-round-xlarge">
+                        <div class="w3-container w3-red w3-round-xlarge" style="width:54.43%">54.43% Yes</div>
+                      </div>
+                </td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:75.20%">75.20% No</div>
+                      </div>
+                </td>
+            </tr>
+            <tr  class="{{ 'active-row' if 'Yes' in content[0]['fever'] else 'aa' }}">
+                <td>Fever</td>
+                <td>{{ content[0]['fever'] }}</td>
+                <td>
+                    <div class="w3-green w3-round-xlarge">
+                        <div class="w3-container w3-red w3-round-xlarge" style="width:75.96%">75.96% Yes</div>
+                      </div>
+                </td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:76.96%">76.96% No</div>
+                      </div>
+                </td>
+            </tr>
+            <tr  class="{{ 'active-row' if 'Yes' in content[0]['cough'] else 'aa' }}">
+                <td>Cough</td>
+                <td>{{ content[0]['cough'] }}</td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:59%">59% No</div>
+                      </div>
+                </td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:79%">79% No</div>
+                      </div>
+                </td>
+            </tr>
+            <tr  class="{{ 'active-row' if 'Yes' in content[0]['fatigue'] else 'aa' }}">
+                <td>Fatigue</td>
+                <td>{{ content[0]['fatigue'] }}</td>
+                <td>
+                    <div class="w3-green w3-round-xlarge">
+                        <div class="w3-container w3-red w3-round-xlarge" style="width:94%">94% Yes</div>
+                      </div>
+                </td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:97%">97% No</div>
+                      </div>
+                </td>
+            </tr>
+            <tr  class="{{ 'active-row' if 'Yes' in content[0]['ncongestion'] else 'aa' }}">
+                <td>Nasal Congestion</td>
+                <td>{{ content[0]['ncongestion'] }}</td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:95%">95% No</div>
+                      </div>
+                </td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:97%">97% No</div>
+                      </div>
+                </td>
+            </tr>
+            <tr  class="{{ 'active-row' if 'Yes' in content[0]['pains'] else 'aa' }}">
+                <td>Pains</td>
+                <td>{{ content[0]['pains'] }}</td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:72%">72% No</div>
+                      </div>
+                </td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:97%">97% No</div>
+                      </div>
+                </td>
+            </tr>
+            <tr  class="{{ 'active-row' if 'Yes' in content[0]['sbreadth'] else 'aa' }}">
+                <td>Shortness of Breadth</td>
+                <td>{{ content[0]['sbreadth'] }}</td>
+                <td>
+                    <div class="w3-green w3-round-xlarge">
+                        <div class="w3-container w3-red w3-round-xlarge" style="width:81%">81% Yes</div>
+                      </div>
+                </td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:95%">95% No</div>
+                      </div>
+                </td>
+            </tr>
+            <tr  class="{{ 'active-row' if 'Yes' in content[0]['vomiting'] else 'aa' }}">
+                <td>Vomiting</td>
+                <td>{{ content[0]['vomiting'] }}</td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:89%">89% No</div>
+                      </div>
+                </td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:96%">96% No</div>
+                      </div>
+                </td>
+            </tr>
+            <tr  class="{{ 'active-row' if 'Yes' in content[0]['Diarrhea'] else 'aa' }}">
+                <td>Diarrhea</td>
+                <td>{{ content[0]['Diarrhea'] }}</td>
+                <td>
+                    <div class="w3-green w3-round-xlarge">
+                        <div class="w3-container w3-red w3-round-xlarge" style="width:75%">75% Yes</div>
+                      </div>
+                </td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:83%">83% No</div>
+                      </div>
+                </td>
+            </tr>
+            <tr  class="{{ 'active-row' if 'Yes' in content[0]['chills'] else 'aa' }}">
+                <td>Chills</td>
+                <td>{{ content[0]['chills'] }}</td>
+                <td>
+                    <div class="w3-green w3-round-xlarge">
+                        <div class="w3-container w3-red w3-round-xlarge" style="width:94%">94% Yes</div>
+                      </div>
+                </td>
+                <td>
+                    <div class="w3-green w3-round-xlarge">
+                        <div class="w3-container w3-red w3-round-xlarge" style="width:97%">97% Yes</div>
+                      </div>
+                </td>
+            </tr>
+            <tr  class="{{ 'active-row' if 'Yes' in content[0]['rnose'] else 'aa' }}">
+                <td>Running Nose</td>
+                <td>{{ content[0]['rnose'] }}</td>
+                <td>
+                    <div class="w3-green w3-round-xlarge">
+                        <div class="w3-container w3-red w3-round-xlarge" style="width:81%">81% Yes</div>
+                      </div>
+                </td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:96%">96% No</div>
+                      </div>
+                </td>
+            </tr>
+            <tr  class="{{ 'active-row' if 'Yes' in content[0]['sthroat'] else 'aa' }}">
+                <td>Sore Throat</td>
+                <td>{{ content[0]['sthroat'] }}</td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:89%">89% No</div>
+                      </div>
+                </td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:90%">90% No</div>
+                      </div>
+                </td>
+            </tr>
+            <tr class="{{ 'active-row' if 'Yes' in content[0]['Headache'] else 'aa' }}">
+                <td>Headache</td>
+                <td>{{ content[0]['Headache'] }}</td>
+                <td>
+                    <div class="w3-red w3-round-xlarge">
+                        <div class="w3-container w3-green w3-round-xlarge" style="width:74%">74% No</div>
+                      </div>
+                </td>
+                <td>
+                    <div class="w3-green w3-round-xlarge">
+                        <div class="w3-container w3-red w3-round-xlarge" style="width:94%">94% Yes</div>
+                      </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</center>
+<button type="submit" class="btn btn-secondary mt-3" onclick="location.href='/'">Back to home</button>
+{% endblock %}

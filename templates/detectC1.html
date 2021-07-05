@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+    <script src="https://kit.fontawesome.com/3410596463.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/stylemain.css">
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      
+      .topnav {
+        overflow: hidden;
+        background-color: #333;
+      }
+      
+      .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      
+      .topnav a.active {
+        background-color: #7B1FA2;
+        color: white;
+      }
+      </style>
+</head>
+<body>  
+  <div class="topnav">
+    <a class="navbar-brand" href="{{ url_for('home') }}"><i class="fa fa-virus mx-3"></i>  Medical Diagnosis using AI</a>
+    <a class="nav-link {% if page=='home' %}active{% endif %}" aria-controls="home" href="{{ url_for('home') }}">Home</a>
+    <a class="nav-link {% if page=='detectC' %}active{% endif %}" aria-controls="detectC" href="{{ url_for('detectC') }}">Detect Covid-19</a>
+    <a class="nav-link {% if page=='detectB' %}active{% endif %}" aria-controls="detectB" href="{{ url_for('detectB') }}">Detect Brain Tumor</a>
+    <a class="nav-link {% if page=='detectP' %}active{% endif %}" aria-controls="detectP" href="{{ url_for('detectP') }}">Detect Pneumonia</a>
+    <!-- <a class="active" href="#home">Home</a>
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a> -->
+  </div>
+      <div class="container">
+      <div id="modal-3" class="modal" data-modal-effect="slide-top">
+        <div class="modal-content">
+          <h2 class="fs-title">How does it work?</h2>
+          <h3 class="fs-subtitle">Symptoms Classifer</h3>
+          <p>To be done....</p>
+          <input type="button" name="next" class="next action-button modal-close" value="Got it!">
+        </div>
+      </div>
+      </div>
+      <form class="steps" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="" method="POST" action="/predictCovid">
+        <ul id="progressbar">
+          <li class="active">Basic Information</li>
+          <li>Primary Symptoms</li>
+          <li>Secondary Symptoms</li>
+          <li>Tertiary Symptoms</li>
+          <li>Upload Image</li>
+        </ul>
+
+        <fieldset>
+          <h2 class="fs-title">Basic Information</h2>
+          <h3 class="fs-subtitle">We just need some basic information to begin your Prediction</h3>
+          <!-- Begin Where Do you Live? -->
+              <div class="hs_firstname field hs-form-field">
+              
+                <label for="state">Where do you Live? *</label>
+                <select name="state" id="state" class="form-control">
+                  <option value="Andhra Pradesh">Andhra Pradesh</option>
+                  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                  <option value="Assam">Assam</option>
+                  <option value="Bihar">Bihar</option>
+                  <option value="Chandigarh">Chandigarh</option>
+                  <option value="Chhattisgarh">Chhattisgarh</option>
+                  <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                  <option value="Daman and Diu">Daman and Diu</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Lakshadweep">Lakshadweep</option>
+                  <option value="Puducherry">Puducherry</option>
+                  <option value="Goa">Goa</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Haryana">Haryana</option>
+                  <option value="Himachal Pradesh">Himachal Pradesh</option>
+                  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                  <option value="Jharkhand">Jharkhand</option>
+                  <option value="Karnataka">Karnataka</option>
+                  <option value="Kerala">Kerala</option>
+                  <option value="Madhya Pradesh">Madhya Pradesh</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Manipur">Manipur</option>
+                  <option value="Meghalaya">Meghalaya</option>
+                  <option value="Mizoram">Mizoram</option>
+                  <option value="Nagaland">Nagaland</option>
+                  <option value="Odisha">Odisha</option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="Sikkim">Sikkim</option>
+                  <option value="Tamil Nadu">Tamil Nadu</option>
+                  <option value="Telangana">Telangana</option>
+                  <option value="Tripura">Tripura</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="Uttarakhand">Uttarakhand</option>
+                  <option value="West Bengal">West Bengal</option>
+                  </select>
+                <!-- <input id="residence" name="residence" required="residence" type="text" value="" placeholder="" data-rule-required="true" data-msg-required="Please include your first name" > -->
+                <span class="error1" style="display: none;">
+                    <i class="error-log fa fa-exclamation-triangle"></i>
+                </span>
+              </div>
+          <!-- End What's Your First Name Field -->
+      
+          <!-- Begin What's Your Gender -->
+              <div class="hs_email field hs-form-field">
+                <label for="gender">What is your Gender? *</label>
+                <select name="gender" id="gender" class="form-control">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  </select>
+                <span class="error1" style="display: none;">
+                    <i class="error-log fa fa-exclamation-triangle"></i>
+                </span>
+              </div>
+          <!-- End What's Your Gender -->
+      
+          <!-- Begin Total Number of Constituents in Your Database Field -->
+              <div class="hs_email field hs-form-field hs_total_number_of_constituents_in_your_database">
+              
+                <label for="age">What is your age? *</label>
+      
+                <input id="age" class="form-text hs-input" name="age" required="required" size="60" maxlength="128" type="number" value="" placeholder="" data-rule-required="true" data-msg-required="Please enter your valid Age" >
+                <span class="error1" style="display: none;">
+                    <i class="error-log fa fa-exclamation-triangle"></i>
+                </span>
+              </div>
+      
+          <!-- End of Age Field -->
+          <input type="button" data-page="1" name="next" class="next action-button" value="Next" />
+          <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"><i class="question-log fa fa-question-circle"></i> What Is This?</div>
+        </fieldset>
+      
+      
+      
+        <!-- Primary Symptoms FIELD SET -->  
+        <fieldset>
+          <h2 class="fs-title">Primary Symptoms</h2>
+          <h3 class="fs-subtitle">How have you been doing in these Symptoms?</h3>
+              <div class="form-item webform-component webform-component-textfield hs_total_number_of_donors_in_year_1 field hs-form-field" id="webform-component-acquisition--amount-1">
+                <label for="fever">Do you have fever? *</label>
+                <select name="fever" id="fever" class="form-control">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  </select>
+                <span class="error1" style="display: none;">
+                    <i class="error-log fa fa-exclamation-triangle"></i>
+                </span>
+              </div>
+            <!-- End Fever Field -->
+      
+            <!-- Begin Cough Field -->
+              <div class="form-item webform-component webform-component-textfield hs_total_number_of_donors_in_year_2 field hs-form-field" id="webform-component-acquisition--amount-2">
+                <label for="cough">Do you have Cough and Cold? *</label>
+                <select name="cough" id="cough" class="form-control">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  </select>
+                <span class="error1" style="display: none;">
+                    <i class="error-log fa fa-exclamation-triangle"></i>
+                </span>
+              </div>
+              <!-- End Cough and Cold Field -->
+      
+            <!-- Begin Fatigue Field -->
+              <div class="form-item webform-component webform-component-textfield webform-container-inline hs_total_donor_percent_change field hs-form-field">
+                <label for="fatigue">Do you have fatigue? *</label>
+                <select name="fatigue" id="fatigue" class="form-control">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  </select>
+              </div>
+              <!-- End Fatigue Fields -->
+
+              <div class="form-item webform-component webform-component-textfield webform-container-inline hs_total_donor_percent_change field hs-form-field">
+                <label for="ncongestion">Do you have Nasal Congestion? *</label>
+                <select name="ncongestion" id="ncongestion" class="form-control">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  </select>
+              </div>
+
+              <div class="form-item webform-component webform-component-textfield webform-container-inline hs_total_donor_percent_Headache field hs-form-field">
+                <label for="Headache">Do you have Headache? *</label>
+                <select name="Headache" id="Headache" class="form-control">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  </select>
+              </div>
+          <input type="button" data-page="2" name="previous" class="previous action-button" value="Previous" />
+          <input type="button" data-page="2" name="next" class="next action-button" value="Next" />
+          <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
+        </fieldset>
+      
+      
+      
+        <!-- Secondary Symptoms FIELD SET -->  
+        <fieldset>
+          <h2 class="fs-title">Secondary Symptomps</h2>
+          <h3 class="fs-subtitle">How have you been doing in these Secondary Symptomps?</h3>
+            <!-- Begin Average Gift Size in Year 1 Field -->
+              <div class="form-item webform-component webform-component-textfield hs_average_gift_size_in_year_1 field hs-form-field" id="edit-submitted-cultivation-amount-1 average_gift_size_in_year_1-99a6d115-5e68-4355-a7d0-529207feb0b3_3256">
+              
+                <label for="ncongestion">Do you have Pains? *</label>
+              <select name="pains" id="pains" class="form-control">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                </select>
+                <span class="error1" style="display: none;">
+                    <i class="error-log fa fa-exclamation-triangle"></i>
+                </span>
+              </div>
+
+              <div class="form-item webform-component webform-component-textfield hs_average_gift_size_in_year_2 field hs-form-field" id="webform-component-cultivation--amount-2">
+              
+                <label for="sbreadth">Do you have Shortness of Breadth ? *</label>
+            <select name="sbreadth" id="sbreadth" class="form-control">
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+              </select>
+                <span class="error1" style="display: none;">
+                    <i class="error-log fa fa-exclamation-triangle"></i>
+                </span>
+              </div>
+            
+              <div class="form-item webform-component webform-component-textfield webform-container-inline hs_average_gift_size_percent_change field hs-form-field" id="webform-component-cultivation--percent-change1">
+              
+                <label for="Diarrhea">Do you have Diarrhea? *</label>
+                <select name="Diarrhea" id="Diarrhea" class="form-control">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  </select>
+              </div>
+              <div class="form-item webform-component webform-component-textfield webform-container-inline vomitingg" id="vomitingg">
+              
+                <label for="vomiting">Do you have Vomiting? *</label>
+                <select name="vomiting" id="vomiting" class="form-control">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  </select>
+              </div>
+              <!-- End Average Gift Size Perchent Change Field -->
+          <input type="button" data-page="3" name="previous" class="previous action-button" value="Previous" />
+          <input type="button" data-page="3" name="next" class="next action-button" value="Next" />
+          <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
+        </fieldset>
+
+        <fieldset>
+          <h2 class="fs-title">Tertiary Symptoms</h2>
+          <h3 class="fs-subtitle">How you've been doing in these symptoms? </h3>
+              <div class="form-item webform-component webform-component-textfield" id="webform-component-cultivation--amount-3 hs_total_giving_in_year_1 field hs-form-field">
+              
+                <label for="chills">Do you have Chills? *</label>
+            <select name="chills" id="chills" class="form-control">
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+              </select>
+                <span class="error1" style="display: none;">
+                    <i class="error-log fa fa-exclamation-triangle"></i>
+                </span>
+              </div>
+              <!-- End Total Giving In Year 1 Field -->
+      
+            <!-- Begin Total Giving In Year 2 Field -->
+              <div class="form-item webform-component webform-component-textfield hs_total_giving_in_year_2 field hs-form-field" id="webform-component-cultivation--amount-4"> 
+              
+                <label for="rnose">Do you have Runny Nose? *</label>
+          <select name="rnose" id="rnose" class="form-control">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            </select>
+              <span class="error1" style="display: none;">
+                    <i class="error-log fa fa-exclamation-triangle"></i>
+                </span>
+              </div>
+              <div class="form-item webform-component webform-component-textfield webform-container-inline hs_total_giving_percent_change field hs-form-field" id="webform-component-cultivation--percent-change2">
+      
+                <label for="sthroat">Do you have Sore Throat? *</label>
+        <select name="sthroat" id="sthroat" class="form-control">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+          </select>
+              </div>
+              <!-- End Average Gift Size Percent Change Field 2 -->
+          <input type="button" data-page="4" name="previous" class="previous action-button" value="Previous" />
+          <input type="button" data-page="4" name="next" class="next action-button" value="Next" />
+          <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
+        </fieldset>
+      
+      
+      
+        <!-- Image FIELD SET -->  
+        <fieldset>
+          <h2 class="fs-title">Upload Image</h2>
+          <h3 class="fs-subtitle">Please Upload Your Image of CT/X-ray scan</h3>
+                <div class="form-item webform-component webform-component-textfield hs_number_of_donors_in_year_1 field hs-form-field" id="webform-component-retention--amount-1"> 
+                <label for="typeimage">Which scan do you want to upload? *</label>                  
+                  <select name="typeimage" id="typeimage" class="form-control">
+                    <option value="XRAY">X-Ray Scan</option>
+                    <option value="CT">CT Scan</option>
+                    </select>
+                <span class="error1" style="display: none;">
+                    <i class="error-log fa fa-exclamation-triangle"></i>
+                </span>
+                </div>
+                <div class="form-item webform-component webform-component-textfield" id="webform-component-retention--amount-2 hs_number_of_year_1_donors_who_also_gave_in_year_2 field hs-form-field">
+                  <input class="form-control mx-auto w-75" type="file" name="image", accept=".jpg,.jpeg,.png,.jfif">
+                </div>
+          <input type="button" data-page="5" name="previous" class="previous action-button" value="Previous" />
+          <input id="submit" class="hs-button primary large action-button next" type="submit" value="Submit">
+          <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
+      </fieldset>
+      
+        <fieldset>
+          <h2 class="fs-title">It's on the way!</h2>
+          <h3 class="fs-subtitle">Thank you for trying out our marketing grader, please go check your email for your fundraising report card and some helpful tips to improve it!</h3>
+          <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
+        </fieldset>
+    <script src="../static/css/jsmain.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends "template.html" %}
+    
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Upload X-Ray Scan Image Here!</h1>
+<p class="lead">and we'll run pre-trained models to figure out whethere you have <b>Pneumonia</b> or not.</p>
+<div class="my-5">
+  <form action="/predict" method="POST" enctype="multipart/form-data">
+    <input class="form-control mx-auto w-75" type="file" name="xrayimage", accept=".jpg,.jpeg,.png,.jfif">
+    <button type="submit" class="btn btn-secondary mt-3">Submit</button>
+  </form>
+  <!-- <div class="my-5">  
+    <p class="lead">You can try after clicking these images as example.</p>
+
+    {%for img in examples %}
+    <img src="{{ url_for('static', filename='uploads/examples/{}'.format(img) )}}" width="100" height="100" onclick="location.href='{{ 'predict?example={}'.format(img) }}'">
+    {%endfor%} 
+
+  </div> -->
+</div>
+{% endblock %}
